@@ -8,13 +8,14 @@ public class PlayerController : MonoBehaviour
     //Variables
 
     public float horizontalInput;
-    public float verticalInput;
     public float speed = 10.0f;
-    public float xRange = 10;
-    public float zRangeMax = 10;
-    public float zRangeMin = -1.0f;
+    public float xRange = 10.0f;
 
     public GameObject projectilePrefab;
+
+    public float zMin;
+    public float zMax;
+    public float verticalInput;
 
     // Start is called before the first frame update
     void Start()
@@ -46,14 +47,14 @@ public class PlayerController : MonoBehaviour
 
         //Keep player in Z axis bounds
 
-        if (transform.position.z < zRangeMin)
+        if (transform.position.z < zMin)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zRangeMin);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zMin);
         }
 
-        if (transform.position.z > zRangeMax)
+        if (transform.position.z > zMax)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zRangeMax);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zMax);
         }
 
 
