@@ -7,13 +7,13 @@ public class DestroyOutofBounds : MonoBehaviour
 {
     private float topbound = 30;
     private float lowerbound = -10;
-    private float xbound = 30;
-    private float Nxbound = -30;
+    private float sideBound = 30;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,23 +24,22 @@ public class DestroyOutofBounds : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (transform.position.x > xbound)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.x < Nxbound)
-        {
-            Destroy(gameObject);
-        }
-
         else if (transform.position.z < lowerbound)
         {
-            //Debug.Log Nos devuelve el mensaje que escribamos entre comillas
+            //Debug.Log Nos devuelve el mensaje que escribamos entre comillas en la consola
             // en la ventana de la consola cuando suceda el metodo que estamos definiendo.
-            Debug.Log("Game Over!");
+            gameManager.Addlives(-1);
             Destroy(gameObject);
         }
-
+        else if (transform.position.x > sideBound)
+        {
+            gameManager.Addlives(-1);
+            Destroy(gameObject);
+        }
+        else if (transform.position.x < -sideBound)
+        {
+            gameManager.Addlives(-1);
+            Destroy(gameObject);
+        }
     }
 }
